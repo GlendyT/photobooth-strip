@@ -22,34 +22,28 @@ const ImageCrop = () => {
 
   const handleDone = async () => {
     const avatar = await getProcessedImage();
-    if (!preview1) {
-      setPreview1(window.URL.createObjectURL(avatar));
-    } else if (!preview2) {
-      setPreview2(window.URL.createObjectURL(avatar));
-    } else {
-      setPreview3(window.URL.createObjectURL(avatar));
-    }
+    setPreview1(window.URL.createObjectURL(avatar));
     resetStates();
     setOpenModal(false);
   };
 
   const handleFileChangePhoto1 = async ({ target: { files } }) => {
-    const file = files && files[0];
-    const imageDataUrl = await readFile(file);
+    const file1 = files && files[0];
+    const imageDataUrl = await readFile(file1);
     setImage(imageDataUrl);
     setOpenModal(true);
   };
 
   const handleFileChangePhoto2 = async ({ target: { files } }) => {
-    const file = files && files[0];
-    const imageDataUrl = await readFile(file);
+    const file2 = files && files[0];
+    const imageDataUrl = await readFile(file2);
     setImage(imageDataUrl);
     setOpenModal(true);
   };
 
   const handleFileChangePhoto3 = async ({ target: { files } }) => {
-    const file = files && files[0];
-    const imageDataUrl = await readFile(file);
+    const file3 = files && files[0];
+    const imageDataUrl = await readFile(file3);
     setImage(imageDataUrl);
     setOpenModal(true);
   };
@@ -97,17 +91,20 @@ const ImageCrop = () => {
       <div className="bg-purple-500" ref={elementRef}>
         <div className="pt-4 max-xl:mx-auto m-auto px-2  bg-purple-500">
           <Photo
-            handleFileChangePhoto1={handleFileChangePhoto1}
+            handleFileChange={handleFileChangePhoto1}
             preview={preview1}
             changeColor={changeColor}
+            
+            
           />
           <Photo1
-            handleFileChangePhoto2={handleFileChangePhoto2}
+            handleFileChange={handleFileChangePhoto2}
             preview={preview2}
             changeColor={changeColor}
+            
           />
           <Photo2
-            handleFileChangePhoto3={handleFileChangePhoto3}
+            handleFileChange={handleFileChangePhoto3}
             preview={preview3}
             changeColor={changeColor}
           />
