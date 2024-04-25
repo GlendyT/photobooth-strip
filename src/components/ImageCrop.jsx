@@ -22,11 +22,21 @@ const ImageCrop = () => {
 
   const handleDone = async () => {
     const avatar = await getProcessedImage();
-    setPreview1(window.URL.createObjectURL(avatar));
+    const previews = [preview1, preview2, preview3];
+    const index = previews.findIndex(preview => !preview);
+    
+    if (index !== -1) {
+      previews[index] = window.URL.createObjectURL(avatar);
+      setPreview1(previews[0]);
+      setPreview2(previews[1]);
+      setPreview3(previews[2]);
+    }
+    
     resetStates();
     setOpenModal(false);
   };
-
+  
+  
   const handleFileChangePhoto1 = async ({ target: { files } }) => {
     const file1 = files && files[0];
     const imageDataUrl = await readFile(file1);
@@ -49,20 +59,20 @@ const ImageCrop = () => {
   };
 
   const resetPhotos = () => {
-    setPreview1(null)
-    setPreview2(null)
-    setPreview3(null)
-    setChangeColor(false)
-    setImageSaved(false)
+    setPreview1(null);
+    setPreview2(null);
+    setPreview3(null);
+    setChangeColor(false);
+    setImageSaved(false);
   };
 
   useEffect(() => {
     if (preview3) {
       setPhoto2Complete(true);
-    }else{
-      setPhoto2Complete(false)
+    } else {
+      setPhoto2Complete(false);
     }
-  }, [preview3])
+  }, [preview3]);
 
   const htmlToImageConvert = useCallback(() => {
     if (!elementRef.current) return;
@@ -94,14 +104,11 @@ const ImageCrop = () => {
             handleFileChange={handleFileChangePhoto1}
             preview={preview1}
             changeColor={changeColor}
-            
-            
           />
           <Photo1
             handleFileChange={handleFileChangePhoto2}
             preview={preview2}
             changeColor={changeColor}
-            
           />
           <Photo2
             handleFileChange={handleFileChangePhoto3}
@@ -116,14 +123,11 @@ const ImageCrop = () => {
             handleClose={() => setOpenModal(false)}
           />
         </Modal>
-        
-
       </div>
       <Button
         htmlToImageConvert={htmlToImageConvert}
         photo2Complete={photo2Complete}
         resetPhotos={resetPhotos}
-
       />
     </div>
   );
