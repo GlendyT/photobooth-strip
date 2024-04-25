@@ -2,7 +2,9 @@ const Photo2 = ({ handleFileChange, preview, changeColor, }) => {
   return (
     <>
       <div className="flex flex-col items-center ">
-        <label htmlFor="avatarInput" className="cursor-pointer">
+        <label htmlFor="avatarInput"         className={` ${
+          preview ? "cursor-not-allowed" : "cursor-pointer"
+        }`}>
           {preview ? (
             <img
               src={preview}

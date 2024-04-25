@@ -8,6 +8,7 @@ import Photo from "./Photobooth/Photo";
 import Photo1 from "./Photobooth/Photo1";
 import Photo2 from "./Photobooth/Photo2";
 import Button from "./Button";
+import Loader from "./Loader/Loader";
 
 const ImageCrop = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -20,23 +21,31 @@ const ImageCrop = () => {
   const elementRef = useRef(null);
   const { getProcessedImage, setImage, resetStates } = useImageCropContext();
 
+  useEffect(() => {
+    if (imageSaved) {
+      const timer = setTimeout(() => {
+        setImageSaved(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [imageSaved]);
+
   const handleDone = async () => {
     const avatar = await getProcessedImage();
     const previews = [preview1, preview2, preview3];
-    const index = previews.findIndex(preview => !preview);
-    
+    const index = previews.findIndex((preview) => !preview);
+
     if (index !== -1) {
       previews[index] = window.URL.createObjectURL(avatar);
       setPreview1(previews[0]);
       setPreview2(previews[1]);
       setPreview3(previews[2]);
     }
-    
+
     resetStates();
     setOpenModal(false);
   };
-  
-  
+
   const handleFileChangePhoto1 = async ({ target: { files } }) => {
     const file1 = files && files[0];
     const imageDataUrl = await readFile(file1);
@@ -81,7 +90,7 @@ const ImageCrop = () => {
     toPng(elementRef.current, { cacheBust: false })
       .then((dataUrl) => {
         const link = document.createElement("a");
-        link.download = "PhotoBooth";
+        link.download = "PhotoBoothFESTA";
         link.href = dataUrl;
 
         link.addEventListener("click", () => {
@@ -129,6 +138,11 @@ const ImageCrop = () => {
         photo2Complete={photo2Complete}
         resetPhotos={resetPhotos}
       />
+      {imageSaved && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };

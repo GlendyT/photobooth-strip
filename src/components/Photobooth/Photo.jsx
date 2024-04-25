@@ -1,10 +1,12 @@
 const Photo = ({ preview, changeColor, handleFileChange }) => {
+
+
   return (
     <div className="flex flex-col items-center">
       <label
         htmlFor="avatarInput"
-        className={`cursor-pointer ${
-          preview ? "cursor-not-allowed" : ""
+        className={` ${
+          preview ? "cursor-not-allowed" : "cursor-pointer"
         }`}
       >
         {preview ? (
@@ -14,6 +16,7 @@ const Photo = ({ preview, changeColor, handleFileChange }) => {
             width={192}
             className="object-cover w-40 h-40 pb-2 max-sm:pb-2 max-sm:px-1 max-sm:w-40"
             alt=""
+
           />
         ) : (
           <div
