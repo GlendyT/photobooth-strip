@@ -1,4 +1,6 @@
-const Photo = ({ preview, changeColor, handleFileChange }) => {
+const Photo = ({ preview, changeColor, handleFileChange, handleFileChangePhoto1 }) => {
+
+
   return (
     <div className="flex flex-col items-center ">
       <label htmlFor="avatarInput" className="cursor-pointer">
@@ -35,7 +37,7 @@ const Photo = ({ preview, changeColor, handleFileChange }) => {
         className="hidden"
         id="avatarInput"
         accept="image/*"
-        onChange={handleFileChange}
+        onChange={handleFileChangePhoto1}
       />
     </div>
   );
