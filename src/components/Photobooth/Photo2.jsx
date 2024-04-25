@@ -1,4 +1,4 @@
-const Photo2 = ({ handleFileChange, preview, changeColor }) => {
+const Photo2 = ({ handleFileChange, preview, changeColor, }) => {
   return (
     <>
       <div className="flex flex-col items-center ">
