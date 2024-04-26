@@ -21,9 +21,9 @@ const Button = ({ htmlToImageConvert,resetPhotos,photo2Complete}) => {
         <button
           className="bg-purple-500 rounded-lg text-white font-bold p-2 mt-4 ml-2 disabled:bg-opacity-25 disabled:cursor-not-allowed transition-colors max-sm:text-xs max-sm:mt-2"
           onClick={resetPhotos}
-          disabled={!photo2Complete}   
+            
         >
-          Create Another One
+          Restart
         </button>
       </div>
     );
