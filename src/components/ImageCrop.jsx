@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { toPng } from "html-to-image";
+import {useEffect, useState } from "react";
+import html2canvas from "html2canvas";
 import Modal from "../components/base/Modal";
 import { readFile } from "../helpers/cropImage";
 import ImageCropModalContent from "./ImageCropModalContent";
@@ -18,7 +18,6 @@ const ImageCrop = () => {
   const [changeColor, setChangeColor] = useState(false);
   const [imageSaved, setImageSaved] = useState(false);
   const [photo2Complete, setPhoto2Complete] = useState(false);
-  const elementRef = useRef(null);
   const { getProcessedImage, setImage, resetStates } = useImageCropContext();
 
   useEffect(() => {
@@ -83,31 +82,30 @@ const ImageCrop = () => {
     }
   }, [preview3]);
 
-  const htmlToImageConvert = useCallback(() => {
-    if (!elementRef.current) return;
-    setImageSaved(true);
 
-    toPng(elementRef.current, { cacheBust: false })
-      .then((dataUrl) => {
-        const link = document.createElement("a");
-        link.download = "PhotoBoothFESTA";
-        link.href = dataUrl;
+  const handleDownloadImage = async () => {
 
-        link.addEventListener("click", () => {
-          setImageSaved(true);
-        });
+    const element = document.getElementById('print'),
+    canvas = await html2canvas(element),
+    data = canvas.toDataURL('image/jpg'),
+    link = document.createElement('a');
+    if(!element) return;
+    setImageSaved(true)
 
-        link.click();
-      })
-      .catch((err) => {
-        console.log(err);
-        setImageSaved(false);
-      });
-  }, [elementRef]);
+    link.href = data;
+    link.download = 'PhotoBoothFESTA.jpg';
+
+    document.body.appendChild(link);
+    link.click();
+    if(!element) return;
+    setImageSaved(false)
+    document.body.removeChild(link);
+    setImageSaved(true)
+  };
 
   return (
     <div className="flex flex-col items-center ">
-      <div className="bg-purple-500" ref={elementRef}>
+      <div className="bg-purple-500" id="print">
         <div className="pt-4 max-xl:mx-auto m-auto px-2  bg-purple-500">
           <Photo
             handleFileChange={handleFileChangePhoto1}
@@ -134,7 +132,7 @@ const ImageCrop = () => {
         </Modal>
       </div>
       <Button
-        htmlToImageConvert={htmlToImageConvert}
+        handleDownloadImage={handleDownloadImage}
         photo2Complete={photo2Complete}
         resetPhotos={resetPhotos}
       />

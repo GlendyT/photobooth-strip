@@ -1,9 +1,9 @@
 
 
-const Button = ({ htmlToImageConvert,resetPhotos,photo2Complete}) => {
+const Button = ({ htmlToImageConvert,resetPhotos,photo2Complete, handleDownloadImage}) => {
 
     const handleDownload = () => {
-      htmlToImageConvert();
+      handleDownloadImage();
     };
   
   

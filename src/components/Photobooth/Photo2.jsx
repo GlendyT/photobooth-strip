@@ -42,7 +42,7 @@ const Photo2 = ({ handleFileChange, preview, changeColor, }) => {
         />
       </div>
       <div className="border-solid border-white border-4 my-2 mx-2 mb-4 p-3 text-white bg-backg1 bg-contain bg-no-repeat max-sm:p-1.5 max-sm:mx-1">
-        <div className="mx-10 p-4 border-white border-4 border-dashed mt-20"></div>
+        <div className="py-4 ml-10 bg-backg2 mb-2 bg-contain bg-no-repeat mt-16"></div>
       </div>
     </>
   );
