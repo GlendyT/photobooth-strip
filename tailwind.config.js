@@ -10,6 +10,7 @@ export default {
         dragimg: "url('/src/assets/bg-upload.svg')",
         backg: "url('/src/assets/photobooth_bg.jpg')",
         backg1: "url('/src/assets/festa_logo.png')",
+        backg2: "url('/src/assets/Only-graphic-white.png')",
       }),
       fontFamily: {
         semiboldsans: ["Recursive", "sans-serif"],
