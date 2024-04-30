@@ -1,4 +1,4 @@
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import html2canvas from "html2canvas";
 import Modal from "../components/base/Modal";
 import { readFile } from "../helpers/cropImage";
@@ -10,7 +10,7 @@ import Photo2 from "./Photobooth/Photo2";
 import Button from "./Button";
 import Loader from "./Loader/Loader";
 import Logo from "./Photobooth/Logo";
-import logo1 from "../assets/festa_logo.png"
+import logo1 from "../assets/festa_logo.png";
 
 const ImageCrop = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -84,33 +84,31 @@ const ImageCrop = () => {
     }
   }, [preview3]);
 
-
   const handleDownloadImage = async () => {
-    const element = document.getElementById('print');
+    const element = document.getElementById("print");
     if (!element) return;
-  
+
     // Increase resolution by setting the scale option
     const options = {
       scale: 8, // You can adjust this value to increase or decrease resolution
     };
-  
+
     const canvas = await html2canvas(element, options);
-    const data = canvas.toDataURL('image/jpeg'); // Changed from 'image/jpg' to 'image/jpeg'
-    const link = document.createElement('a');
-  
+    const data = canvas.toDataURL("image/jpeg"); // Changed from 'image/jpg' to 'image/jpeg'
+    const link = document.createElement("a");
+
     setImageSaved(true);
-  
+
     link.href = data;
-    link.download = 'PhotoBoothFESTA.jpg';
-  
+    link.download = "PhotoBoothFESTA.jpg";
+
     document.body.appendChild(link);
     link.click();
-  
+
     setImageSaved(false);
     document.body.removeChild(link);
     setImageSaved(true);
   };
-  
 
   return (
     <div className="flex flex-col items-center ">
@@ -131,7 +129,7 @@ const ImageCrop = () => {
             preview={preview3}
             changeColor={changeColor}
           />
-          <Logo logo1={logo1}/>
+          <Logo logo1={logo1} />
         </div>
 
         <Modal open={openModal} handleClose={() => setOpenModal(false)}>
@@ -145,6 +143,7 @@ const ImageCrop = () => {
         handleDownloadImage={handleDownloadImage}
         photo2Complete={photo2Complete}
         resetPhotos={resetPhotos}
+        preview1={preview1}
       />
       {imageSaved && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">

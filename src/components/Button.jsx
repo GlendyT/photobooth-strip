@@ -1,6 +1,6 @@
 
 
-const Button = ({ htmlToImageConvert,resetPhotos,photo2Complete, handleDownloadImage}) => {
+const Button = ({resetPhotos,photo2Complete, handleDownloadImage, preview1}) => {
 
     const handleDownload = () => {
       handleDownloadImage();
@@ -21,7 +21,7 @@ const Button = ({ htmlToImageConvert,resetPhotos,photo2Complete, handleDownloadI
         <button
           className="bg-purple-500 rounded-lg text-white font-bold p-2 mt-4 ml-2 disabled:bg-opacity-25 disabled:cursor-not-allowed transition-colors max-sm:text-xs max-sm:mt-2"
           onClick={resetPhotos}
-            
+          disabled={!preview1}
         >
           Restart
         </button>
