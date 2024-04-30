@@ -1,7 +1,7 @@
 const Photo2 = ({ handleFileChange, preview, changeColor, }) => {
   return (
     <>
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center pb-4 ">
         <label htmlFor="avatarInput"         className={` ${
           preview ? "cursor-not-allowed" : "cursor-pointer"
         }`}>
@@ -40,9 +40,6 @@ const Photo2 = ({ handleFileChange, preview, changeColor, }) => {
           id="avatarInput"
           accept="image/*"
         />
-      </div>
-      <div className="border-solid border-white border-4 my-2 mx-2 mb-4 p-3 text-white bg-backg1 bg-contain bg-no-repeat max-sm:p-1.5 max-sm:mx-1">
-        <div className="py-4 ml-10 bg-backg2 mb-2 bg-contain bg-no-repeat mt-16"></div>
       </div>
     </>
   );
