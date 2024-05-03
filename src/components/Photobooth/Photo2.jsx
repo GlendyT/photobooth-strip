@@ -10,7 +10,7 @@ const Photo2 = ({ handleFileChange, preview, changeColor, }) => {
               src={preview}
               height={192}
               width={192}
-              className=" object-cover w-40 h-40 pb-2 max-sm:pb-2 max-sm:px-1 max-sm:w-40"
+              className=" object-cover w-40 h-40 pb-2 max-sm:pb-2 max-sm:px-0 max-sm:w-40"
               alt=""
             />
           ) : (
