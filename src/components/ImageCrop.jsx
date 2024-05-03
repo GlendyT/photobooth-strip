@@ -100,7 +100,7 @@ const ImageCrop = () => {
     setImageSaved(true);
 
     link.href = data;
-    link.download = "PhotoBoothFESTA.jpg";
+    link.download = "FESTA-PhotoBooth.jpg";
 
     document.body.appendChild(link);
     link.click();
